@@ -20,9 +20,9 @@ RUN add-apt-repository \
 RUN apt-get update \
     && apt-get install -y docker-ce
 
+RUN usermod -a -G docker gitpod
 
 #FROM python:3.7
-
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -40,6 +40,8 @@ RUN apt-get update \
 
 WORKDIR /usr/src
 
+USER gitpod
+
 # Setup hass-release
 RUN git clone --depth 1 https://github.com/home-assistant/hass-release \
     && cd hass-release \
@@ -47,6 +49,7 @@ RUN git clone --depth 1 https://github.com/home-assistant/hass-release \
 
 WORKDIR /workspaces
 
+USER root
 # Install Python dependencies from requirements
 COPY requirements_test.txt requirements_test_pre_commit.txt homeassistant/package_constraints.txt ./
 RUN pip3 install -r requirements_test.txt -c package_constraints.txt \
