@@ -1,3 +1,4 @@
+
 FROM gitpod/workspace-full
 
 USER root
@@ -5,6 +6,10 @@ USER root
 RUN apt-get update \
     && apt-get install -y docker
 
+FROM docker
+
+RUN apt-get update \
+    && apt-get upgrade
 #FROM python:3.7
 
 
