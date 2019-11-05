@@ -47,9 +47,6 @@ RUN git clone --depth 1 https://github.com/home-assistant/hass-release \
     && cd hass-release \
     && pip3 install -e .
 
-USER gitpod
-
-RUN pip3 install -e .
 
 WORKDIR /workspaces
 
@@ -67,3 +64,6 @@ RUN pip3 install -r requirements_all.txt \
 
 # Set the default shell to bash instead of sh
 ENV SHELL /bin/bash
+
+USER gitpod
+
