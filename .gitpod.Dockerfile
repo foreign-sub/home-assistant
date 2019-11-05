@@ -34,5 +34,9 @@ RUN pip3 install -r requirements_test.txt -c package_constraints.txt \
 
 RUN pip3 install tox colorlog pre-commit
 
+COPY requirements_all.txt ./
+RUN pip3 install -r requirements_all.txt \
+    && rm -f requirements_all.txt
+
 # Set the default shell to bash instead of sh
 ENV SHELL /bin/bash
