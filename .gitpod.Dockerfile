@@ -40,12 +40,16 @@ RUN apt-get update \
 
 WORKDIR /usr/src
 
-USER gitpod
+
 
 # Setup hass-release
 RUN git clone --depth 1 https://github.com/home-assistant/hass-release \
     && cd hass-release \
     && pip3 install -e .
+
+USER gitpod
+
+RUN pip3 install -e .
 
 WORKDIR /workspaces
 
