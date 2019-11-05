@@ -35,6 +35,7 @@ RUN pip3 install -r requirements_test.txt -c package_constraints.txt \
 # Set the default shell to bash instead of sh
 ENV SHELL /bin/bash
 
-WORKDIR /workspace/home-assistant
+WORKDIR /workspace/home-assistant/script
 
-RUN python3 script/setup
+RUN ls -lastr
+RUN python3 ./setup
