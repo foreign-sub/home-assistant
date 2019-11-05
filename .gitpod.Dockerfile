@@ -1,8 +1,12 @@
-# FROM gitpod/workspace-full
-
-FROM python:3.7
+FROM gitpod/workspace-full
 
 USER root
+
+RUN apt-get update \
+    && apt-get install -y dockerce
+
+#FROM python:3.7
+
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
