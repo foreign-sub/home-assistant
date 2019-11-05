@@ -35,6 +35,9 @@ RUN pip3 install -r requirements_test.txt -c package_constraints.txt \
 #WORKDIR /workspace/home-assistant/script
 
 RUN pip3 install tox colorlog pre-commit
+
+WORKDIR /
+
 RUN pwd
 RUN ls -lastr
 
