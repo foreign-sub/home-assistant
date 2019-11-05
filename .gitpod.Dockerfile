@@ -32,19 +32,7 @@ COPY requirements_test.txt requirements_test_pre_commit.txt homeassistant/packag
 RUN pip3 install -r requirements_test.txt -c package_constraints.txt \
     && rm -f requirements_test.txt requirements_test_pre_commit.txt package_constraints.txt
 
-# WORKDIR /workspace/home-assistant/script
-
 RUN pip3 install tox colorlog pre-commit
-
-# WORKDIR /
-
-RUN pwd
-RUN ls -lastr
-
-RUN pip3 install -e .
-
-COPY script/setup ./
-RUN python3 setup
 
 # Set the default shell to bash instead of sh
 ENV SHELL /bin/bash
