@@ -21,6 +21,8 @@ RUN apt-get update \
     && apt-get install -y docker-ce
 
 RUN usermod -a -G docker gitpod
+RUN newgrp docker
+RUN docker run homeassistant/home-assistant
 
 #FROM python:3.7
 
