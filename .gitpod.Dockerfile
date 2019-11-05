@@ -22,7 +22,11 @@ RUN apt-get update \
 
 RUN usermod -a -G docker gitpod
 RUN newgrp docker
-RUN docker run homeassistant/home-assistant
+RUN service docker restart
+RUN docker run hello-world
+RUN curl -L --fail https://github.com/docker/compose/releases/download/1.24.1/run.sh -o /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
+#RUN docker run homeassistant/home-assistant
 
 #FROM python:3.7
 
