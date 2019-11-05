@@ -9,3 +9,5 @@ ports:
 tasks:
 - init: echo 'init script' # runs during prebuild
   command: echo 'start script'
+- init: echo 'init script' # runs during prebuild
+  command: python3 script/lazytox

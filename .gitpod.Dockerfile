@@ -1,8 +1,8 @@
-FROM gitpod/workspace-full
-
-USER root
+# FROM gitpod/workspace-full
 
 FROM python:3.7
+
+USER root
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
