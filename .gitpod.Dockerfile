@@ -22,7 +22,7 @@ RUN apt-get update \
 
 RUN usermod -a -G docker gitpod
 RUN newgrp docker
-RUN service docker restart
+RUN service docker start
 RUN docker run hello-world
 RUN curl -L --fail https://github.com/docker/compose/releases/download/1.24.1/run.sh -o /usr/local/bin/docker-compose
 RUN chmod +x /usr/local/bin/docker-compose
