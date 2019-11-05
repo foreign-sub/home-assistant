@@ -41,13 +41,10 @@ RUN pip3 install tox colorlog pre-commit
 RUN pwd
 RUN ls -lastr
 
-COPY pre-commit ./
-RUN pre-commit install
 RUN pip3 install -e .
 
 COPY script/setup ./
 RUN python3 setup
-
 
 # Set the default shell to bash instead of sh
 ENV SHELL /bin/bash
