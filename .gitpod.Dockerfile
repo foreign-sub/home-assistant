@@ -37,4 +37,4 @@ ENV SHELL /bin/bash
 
 WORKDIR /workspace/home-assistant
 
-RUN script/setup
+RUN python3 script/setup
