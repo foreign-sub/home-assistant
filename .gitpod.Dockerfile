@@ -23,10 +23,8 @@ RUN apt-get update \
 RUN usermod -a -G docker gitpod
 RUN newgrp docker
 RUN service docker start
-# RUN docker run hello-world
 RUN curl -L --fail https://github.com/docker/compose/releases/download/1.24.1/run.sh -o /usr/local/bin/docker-compose
 RUN chmod +x /usr/local/bin/docker-compose
-#RUN docker run homeassistant/home-assistant
 
 #FROM python:3.7
 
@@ -46,12 +44,11 @@ RUN apt-get update \
 
 WORKDIR /usr/src
 
-
-
 # Setup hass-release
 RUN git clone --depth 1 https://github.com/home-assistant/hass-release \
     && cd hass-release \
-    && pip3 install -e .
+    && pip3 install -e . \
+    && chown -hR gitpod:gitpod /home/gitpod/.pyenv/versions/3.7.4/lib/python3.7/site-packages
 
 
 WORKDIR /workspaces
@@ -60,13 +57,15 @@ USER root
 # Install Python dependencies from requirements
 COPY requirements_test.txt requirements_test_pre_commit.txt homeassistant/package_constraints.txt ./
 RUN pip3 install -r requirements_test.txt -c package_constraints.txt \
-    && rm -f requirements_test.txt requirements_test_pre_commit.txt package_constraints.txt
+    && rm -f requirements_test.txt requirements_test_pre_commit.txt package_constraints.txt \
+    && chown -hR gitpod:gitpod /home/gitpod/.pyenv/versions/3.7.4/lib/python3.7/site-packages
 
 RUN pip3 install tox colorlog pre-commit
 
 COPY requirements_all.txt ./
 RUN pip3 install -r requirements_all.txt \
-    && rm -f requirements_all.txt
+    && rm -f requirements_all.txt \
+    && chown -hR gitpod:gitpod /home/gitpod/.pyenv/versions/3.7.4/lib/python3.7/site-packages
 
 # Set the default shell to bash instead of sh
 ENV SHELL /bin/bash
